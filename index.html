@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPN - Bachata Perfect Night</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Hero section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('imagenes/fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ff6b35, #ffa500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #ffa500;
+        }
+        
+        .hero .date {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #ffa500;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .hero .location {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            color: #ddd;
+        }
+        
+        /* Secciones generales */
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            color: #ffa500;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, #ff6b35, #ffa500);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Cartel de agradecimiento */
+        .agradecimiento-banner {
+            background: linear-gradient(to right, #ff6b35, #ffa500);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .agradecimiento-banner i {
+            margin: 0 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Botón de seguir */
+        .seguir-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin: 20px auto;
+            transition: all 0.3s;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4);
+        }
+        
+        .seguir-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(225, 48, 108, 0.6);
+        }
+        
+        .seguir-btn i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Sección artistas */
+        .artistas-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .artista-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .artista-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.15);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+        
+        .artista-img {
+            height: 200px;
+            background-color: #222;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .artista-img i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: rgba(255, 165, 0, 0.7);
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        
+        .artista-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .artista-name {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #ffa500;
+        }
+        
+        .artista-style {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+        
+        .artista-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .artista-link {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .artista-link:hover {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            transform: translateY(-3px);
+        }
+        
+        .artista-link i {
+            margin-right: 5px;
+        }
+        
+        /* Sección eventos especiales */
+        .eventos-especiales-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .evento-especial-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .evento-especial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.15);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+        
+        .evento-especial-icon {
+            font-size: 60px;
+            color: #ffa500;
+            margin-bottom: 20px;
+        }
+        
+        .evento-especial-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #ffa500;
+        }
+        
+        .evento-especial-desc {
+            font-size: 1rem;
+            color: #ccc;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .google-photos-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4285F4, #34A853, #FBBC05, #EA4335);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin: 5px;
+        }
+        
+        .google-photos-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.4);
+        }
+        
+        .google-photos-btn i {
+            margin-right: 8px;
+        }
+        
+        /* Sección fotógrafo */
+        .fotografo-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            justify-content: center;
+        }
+        
+        .fotografo-img {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            height: 300px;
+            background-color: #222;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: #ffa500;
+        }
+        
+        .fotografo-info {
+            flex: 1;
+            min-width: 250px;
+            max-width: 500px;
+        }
+        
+        .fotografo-info h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #ffa500;
+        }
+        
+        .fotografo-info .subtitulo {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #ff6b35;
+            font-weight: 600;
+        }
+        
+        .fotografo-info p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        /* Sección donaciones */
+        .donaciones-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .donacion-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #25D366;
+            transition: all 0.3s;
+        }
+        
+        .donacion-card:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+        
+        .donacion-card h3 {
+            color: #ffa500;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .donacion-card h4 {
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+        
+        .donacion-datos {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 0.95rem;
+            word-break: break-all;
+        }
+        
+        .btn-copiar {
+            display: inline-flex;
+            align-items: center;
+            background-color: #25D366;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .btn-copiar:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+        }
+        
+        .btn-copiar i {
+            margin-right: 8px;
+        }
+        
+        /* Botón WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s;
+            z-index: 100;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #050505;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .event-name {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #ffa500;
+            font-weight: 600;
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero .date { font-size: 1.4rem; }
+            .agradecimiento-banner { font-size: 1rem; }
+            .seguir-btn { font-size: 1.1rem; padding: 12px 30px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/5491167137742?text=Hola%20Carlos,%20tengo%20una%20consulta%20sobre%20BPN" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Hero section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>BPN</h1>
+            <h2>BACHATA PERFECT NIGHT</h2>
+            <div class="date">6, 7 Y 8 DE FEBRERO DEL 2026</div>
+            <div class="location">MONTEVIDEO - URUGUAY</div>
+        </div>
+    </section>
+
+    <!-- Cartel de agradecimiento - INICIO -->
+    <div class="container" style="margin-top: 30px;">
+        <div class="agradecimiento-banner">
+            <i class="fas fa-heart"></i>
+            ¡NO TE OLVIDES DE AGRADECER COMPARTIENDO Y ETIQUETANDO EL EVENTO! 
+            <i class="fas fa-heart"></i>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="https://www.instagram.com/carlosmachucafotografia/" target="_blank" class="seguir-btn">
+                <i class="fab fa-instagram"></i> SEGUIR AL FOTÓGRAFO
+            </a>
+        </div>
+    </div>
+
+    <!-- Sección artistas -->
+    <section id="artistas">
+        <div class="container">
+            <div class="section-title">
+                <h2>Artistas & Instructores</h2>
+            </div>
+            
+            <div class="artistas-container" id="artistas-container">
+                <!-- Artistas generados dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección eventos especiales -->
+    <section id="eventos-especiales">
+        <div class="container">
+            <div class="section-title">
+                <h2>Eventos Especiales</h2>
+            </div>
+            
+            <div class="eventos-especiales-container">
+                <div class="evento-especial-card">
+                    <div class="evento-especial-icon">
+                        <i class="fas fa-swimming-pool"></i>
+                    </div>
+                    <h3 class="evento-especial-title">Pool Party</h3>
+                    <p class="evento-especial-desc">
+                        Domingo 8 de Febrero - Country De Atlantida<br>
+                        Ruta 11 a 150mts de Ruta interbalnearia
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                        <a href="https://photos.app.goo.gl/y7YKhLqGoCnmBQeY8" target="_blank" class="google-photos-btn">
+                            <i class="fas fa-images"></i> Ver Videos
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="evento-especial-card">
+                    <div class="evento-especial-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="evento-especial-title">Fotos Talleres</h3>
+                    <p class="evento-especial-desc">
+                        Todas las fotos de los talleres del congreso
+                    </p>
+                    <a href="https://photos.app.goo.gl/5uUyySY5TJLLnjGi8" target="_blank" class="google-photos-btn">
+                        <i class="fas fa-images"></i> Ver Fotos
+                    </a>
+                </div>
+                
+                <div class="evento-especial-card">
+                    <div class="evento-especial-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="evento-especial-title">Videos Sociales</h3>
+                    <p class="evento-especial-desc">
+                        Viernes 6 y Sábado 7 de Febrero
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                        <a href="https://photos.app.goo.gl/m8eRKwHX2bmGxfu2A" target="_blank" class="google-photos-btn">
+                            <i class="fas fa-video"></i> Viernes
+                        </a>
+                        <a href="https://photos.app.goo.gl/MM6tSxouUMHW3mQGA" target="_blank" class="google-photos-btn">
+                            <i class="fas fa-video"></i> Sábado
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección donaciones -->
+    <section id="donaciones">
+        <div class="container">
+            <div class="section-title">
+                <h2>Apoya al Fotógrafo</h2>
+            </div>
+            
+            <div class="donaciones-container">
+                <!-- Argentina -->
+                <div class="donacion-card">
+                    <h3>🇦🇷 Argentina - Pesos</h3>
+                    <div class="donacion-datos">
+                        <strong>Banco Galicia</strong><br>
+                        Carlos Andres Machuca Navarrete<br>
+                        CBU: 0070221030004009046873<br>
+                        Alias: MUNDO.SALERO.MAREA
+                    </div>
+                    <button class="btn-copiar" onclick="copiarTexto('0070221030004009046873')">
+                        <i class="fas fa-copy"></i> Copiar CBU
+                    </button>
+                </div>
+                
+                <div class="donacion-card">
+                    <h3>🇦🇷 Argentina - Dólares</h3>
+                    <div class="donacion-datos">
+                        <strong>Banco Galicia</strong><br>
+                        Carlos Andres Machuca Navarrete<br>
+                        CBU: 0070221031004006928010<br>
+                        Alias: OSO.PATA.PATO
+                    </div>
+                    <button class="btn-copiar" onclick="copiarTexto('0070221031004006928010')">
+                        <i class="fas fa-copy"></i> Copiar CBU
+                    </button>
+                </div>
+                
+                <div class="donacion-card">
+                    <h3>🇦🇷 Mercado Pago</h3>
+                    <div class="donacion-datos">
+                        <strong>CVU:</strong> 0000003100066881278880<br>
+                        <strong>Alias:</strong> machufotografia<br>
+                        <strong>Celular:</strong> +54 9 11 6713-7742
+                    </div>
+                    <button class="btn-copiar" onclick="copiarTexto('0000003100066881278880')">
+                        <i class="fas fa-copy"></i> Copiar CVU
+                    </button>
+                </div>
+                
+                <!-- Uruguay -->
+                <div class="donacion-card">
+                    <h3>🇺🇾 Uruguay - Prex</h3>
+                    <div class="donacion-datos">
+                        <strong>Número:</strong> 1280624<br>
+                        <strong>Titular:</strong> Jorge Willebald
+                    </div>
+                    <button class="btn-copiar" onclick="copiarTexto('1280624')">
+                        <i class="fas fa-copy"></i> Copiar Número
+                    </button>
+                </div>
+                
+                <div class="donacion-card">
+                    <h3>🇺🇾 Uruguay - BROU</h3>
+                    <div class="donacion-datos">
+                        <strong>Cuenta:</strong> 001392440-00001<br>
+                        <strong>Titular:</strong> Jorge Willebald
+                    </div>
+                    <button class="btn-copiar" onclick="copiarTexto('001392440-00001')">
+                        <i class="fas fa-copy"></i> Copiar Cuenta
+                    </button>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="https://wa.me/5491167137742?text=Hola%20Carlos,%20quiero%20hacer%20una%20donación%20para%20el%20evento" target="_blank" style="background-color: #25D366; color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center;">
+                    <i class="fab fa-whatsapp" style="margin-right: 10px; font-size: 20px;"></i>
+                    Cualquier consulta a mi WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección fotógrafo -->
+    <section id="fotografo">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fotografo y Filmaker desde Argentina</h2>
+            </div>
+            
+            <div class="fotografo-container">
+                <div class="fotografo-img">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <div class="fotografo-info">
+                    <h3>Carlos Machuca</h3>
+                    <div class="subtitulo">Fotógrafo y Filmaker desde Argentina</div>
+                    <p>Fotógrafo y videógrafo especializado en eventos de baile y congresos latinos. Con más de 10 años de experiencia capturando los momentos más emblemáticos de los mejores bailarines y eventos en Latinoamérica.</p>
+                    <p>Servicios ofrecidos: Fotografía profesional, video highlights, sesiones individuales y en pareja, y cobertura completa del evento.</p>
+                    
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <a href="https://www.instagram.com/carlosmachucafotografia/" target="_blank" style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: 600;">
+                            <i class="fab fa-instagram"></i> Seguir
+                        </a>
+                        <a href="https://wa.me/5491167137742?text=Hola%20Carlos,%20quiero%20contratar%20tus%20servicios%20fotográficos" target="_blank" style="background-color: #25D366; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: 600;">
+                            <i class="fab fa-whatsapp"></i> Contratar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cartel de agradecimiento - FINAL -->
+    <div class="container" style="margin-bottom: 50px;">
+        <div class="agradecimiento-banner">
+            <i class="fas fa-heart"></i>
+            ¡GRACIAS POR COMPARTIR Y ETIQUETAR! SIGAMOS HACIENDO CRECER LA COMUNIDAD 
+            <i class="fas fa-heart"></i>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="https://www.instagram.com/carlosmachucafotografia/" target="_blank" class="seguir-btn">
+                <i class="fab fa-instagram"></i> SEGUIR AL FOTÓGRAFO
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="event-name">Congreso de Bachata y Zouk</div>
+            <p>Montevideo, Uruguay - Febrero 2026</p>
+            <div class="copyright">
+                <p>Página creada por Carlos Machuca Fotografía - Derechos reservados 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Función para copiar texto
+        function copiarTexto(texto) {
+            navigator.clipboard.writeText(texto).then(function() {
+                alert('¡Copiado al portapapeles!');
+            }, function() {
+                alert('Error al copiar. Por favor, copia manualmente.');
+            });
+        }
+
+        // Datos de los artistas con sus links de Instagram
+        const artistas = [
+            { 
+                nombre: "VINI Y BATU", 
+                estilo: "BACHATA FUSION",
+                links: ["https://www.instagram.com/reel/DUbgG5tiKgV/"]
+            },
+            { 
+                nombre: "OTAVIO Y SARA", 
+                estilo: "ZOUK EN PAREJAS (1H 30MIN)",
+                links: ["https://www.instagram.com/p/DUbfXywD28k/"]
+            },
+            { 
+                nombre: "WEBERTON Y CAROL", 
+                estilo: "BACHATA PAREJAS",
+                links: [
+                    "https://www.instagram.com/p/DUbvM-Yj5FY/",
+                    "https://www.instagram.com/p/DUoMH6liFbH/"
+                ]
+            },
+            { 
+                nombre: "LEO Y TATI", 
+                estilo: "BACHATA SENSUAL",
+                links: ["https://www.instagram.com/p/DUeX0iJiBnj/"]
+            },
+            { 
+                nombre: "ALLAN Y VICK", 
+                estilo: "ZOUK EN PAREJAS (1H 30MIN)",
+                links: [
+                    "https://www.instagram.com/p/DUcMNWwCDEc/",
+                    "https://www.instagram.com/p/DUeImOYCFzN/"
+                ]
+            },
+            { 
+                nombre: "TOM Y ASTRID", 
+                estilo: "BACHATA INFLUENCE",
+                links: ["https://www.instagram.com/p/DUeTMitiN43/"]
+            },
+            { 
+                nombre: "VALENTIN TORRES", 
+                estilo: "INVITADO ESPECIAL",
+                links: ["https://www.instagram.com/p/DUbjRuwiAN1/"]
+            }
+        ];
+        
+        // Generar artistas
+        function cargarArtistas() {
+            const artistasContainer = document.getElementById('artistas-container');
+            
+            artistas.forEach((artista, index) => {
+                const artistaCard = document.createElement('div');
+                artistaCard.className = 'artista-card';
+                
+                let linksHTML = '';
+                artista.links.forEach(link => {
+                    linksHTML += `<a href="${link}" target="_blank" class="artista-link"><i class="fab fa-instagram"></i> Video</a>`;
+                });
+                
+                artistaCard.innerHTML = `
+                    <div class="artista-img" style="background-image: url('imagenes/${index + 1}.jpg');">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="artista-info">
+                        <h3 class="artista-name">${artista.nombre}</h3>
+                        <p class="artista-style">${artista.estilo}</p>
+                        <div class="artista-links">
+                            ${linksHTML}
+                        </div>
+                    </div>
+                `;
+                
+                artistasContainer.appendChild(artistaCard);
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarArtistas();
+        });
+    </script>
+</body>
+</html>
