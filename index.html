@@ -325,12 +325,23 @@
             max-width: 300px;
             height: 300px;
             background-color: #222;
+            background-size: cover;
+            background-position: center;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+        
+        .fotografo-img i {
             font-size: 80px;
-            color: #ffa500;
+            color: rgba(255, 165, 0, 0.7);
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         
         .fotografo-info {
@@ -669,7 +680,8 @@
             </div>
             
             <div class="fotografo-container">
-                <div class="fotografo-img">
+                <!-- LA FOTO DEL FOTÓGRAFO DEBE LLAMARSE "fotografo.jpg" Y ESTAR EN CARPETA "imagenes/" -->
+                <div class="fotografo-img" style="background-image: url('imagenes/fotografo.jpg');">
                     <i class="fas fa-camera"></i>
                 </div>
                 <div class="fotografo-info">
@@ -678,12 +690,12 @@
                     <p>Fotógrafo y videógrafo especializado en eventos de baile y congresos latinos. Con más de 10 años de experiencia capturando los momentos más emblemáticos de los mejores bailarines y eventos en Latinoamérica.</p>
                     <p>Servicios ofrecidos: Fotografía profesional, video highlights, sesiones individuales y en pareja, y cobertura completa del evento.</p>
                     
-                    <div style="display: flex; gap: 15px; margin-top: 20px;">
-                        <a href="https://www.instagram.com/carlosmachucafotografia/" target="_blank" style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: 600;">
-                            <i class="fab fa-instagram"></i> Seguir
+                    <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
+                        <a href="https://www.instagram.com/carlosmachucafotografia/" target="_blank" style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center;">
+                            <i class="fab fa-instagram" style="margin-right: 8px;"></i> Seguir
                         </a>
-                        <a href="https://wa.me/5491167137742?text=Hola%20Carlos,%20quiero%20contratar%20tus%20servicios%20fotográficos" target="_blank" style="background-color: #25D366; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: 600;">
-                            <i class="fab fa-whatsapp"></i> Contratar
+                        <a href="https://wa.me/5491167137742?text=Hola%20Carlos,%20quiero%20contratar%20tus%20servicios%20fotográficos" target="_blank" style="background-color: #25D366; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center;">
+                            <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Contratar
                         </a>
                     </div>
                 </div>
@@ -721,9 +733,9 @@
         // Función para copiar texto
         function copiarTexto(texto) {
             navigator.clipboard.writeText(texto).then(function() {
-                alert('¡Copiado al portapapeles!');
+                alert('✅ ¡Copiado al portapapeles!');
             }, function() {
-                alert('Error al copiar. Por favor, copia manualmente.');
+                alert('❌ Error al copiar. Por favor, copia manualmente.');
             });
         }
 
@@ -802,6 +814,7 @@
             });
         }
         
+        // Inicializar todo cuando el DOM esté cargado
         document.addEventListener('DOMContentLoaded', function() {
             cargarArtistas();
         });
