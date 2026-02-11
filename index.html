@@ -160,7 +160,7 @@
             font-size: 1.5rem;
         }
         
-        /* Sección artistas */
+        /* Sección artistas - SIN ÍCONOS */
         .artistas-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -186,17 +186,6 @@
             background-color: #222;
             background-size: cover;
             background-position: center;
-            position: relative;
-        }
-        
-        .artista-img i {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 50px;
-            color: rgba(255, 165, 0, 0.7);
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
         
         .artista-info {
@@ -310,7 +299,7 @@
             margin-right: 8px;
         }
         
-        /* Sección fotógrafo */
+        /* Sección fotógrafo - SIN ÍCONO */
         .fotografo-container {
             display: flex;
             flex-wrap: wrap;
@@ -328,20 +317,6 @@
             background-size: cover;
             background-position: center;
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        
-        .fotografo-img i {
-            font-size: 80px;
-            color: rgba(255, 165, 0, 0.7);
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
         }
         
         .fotografo-info {
@@ -672,7 +647,7 @@
         </div>
     </section>
 
-    <!-- Sección fotógrafo -->
+    <!-- Sección fotógrafo - SIN ÍCONO -->
     <section id="fotografo">
         <div class="container">
             <div class="section-title">
@@ -681,9 +656,7 @@
             
             <div class="fotografo-container">
                 <!-- LA FOTO DEL FOTÓGRAFO DEBE LLAMARSE "fotografo.jpg" Y ESTAR EN CARPETA "imagenes/" -->
-                <div class="fotografo-img" style="background-image: url('imagenes/fotografo.jpg');">
-                    <i class="fas fa-camera"></i>
-                </div>
+                <div class="fotografo-img" style="background-image: url('imagenes/fotografo.jpg');"></div>
                 <div class="fotografo-info">
                     <h3>Carlos Machuca</h3>
                     <div class="subtitulo">Fotógrafo y Filmaker desde Argentina</div>
@@ -784,7 +757,7 @@
             }
         ];
         
-        // Generar artistas
+        // Generar artistas - SIN ÍCONOS
         function cargarArtistas() {
             const artistasContainer = document.getElementById('artistas-container');
             
@@ -798,9 +771,7 @@
                 });
                 
                 artistaCard.innerHTML = `
-                    <div class="artista-img" style="background-image: url('imagenes/${index + 1}.jpg');">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
+                    <div class="artista-img" style="background-image: url('imagenes/${index + 1}.jpg');"></div>
                     <div class="artista-info">
                         <h3 class="artista-name">${artista.nombre}</h3>
                         <p class="artista-style">${artista.estilo}</p>
